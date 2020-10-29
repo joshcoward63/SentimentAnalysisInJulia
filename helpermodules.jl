@@ -10,7 +10,7 @@ colnames = ["class_label", "id", "date", "flag", "userid", "tweet"]
 
 # Functions
 renamecolumns!(df, colnames) = names!(df, Symbol.(colnames))
-formatclasslabels!(df) = (replace!(df.class_label, "4" => "1"); replace!(df.class_label, "0" => "-1"))
+formatclasslabels!(df) = (replace!(df.class_label, 4 => 1); replace!(df.class_label, 0 => -1))
 function getdf(filepath) 
     df = DataFrame(CSV.read(filepath, normalizenames = true))
     head(df)
