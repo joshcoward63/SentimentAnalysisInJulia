@@ -40,7 +40,7 @@ end
 
 ### TRAINING ###
 # Variables
-const positive = 4
+const positive = 1
 
 # Functions
 is_pos_tweet(row) = parse(Int, string(row.class_label)) == positive
@@ -88,6 +88,7 @@ path = "D:\\Downloads\\trainingandtestdata\\train.csv"
 
 # Script
 df = getdf(path)
+print(df)
 training_set, testing_set = splitobs(shuffleobs(df), 0.9) 
 model = train(training_set)
 println(test(testing_set, model)) # output the accuracy rate to the console 
