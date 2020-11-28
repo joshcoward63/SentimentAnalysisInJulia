@@ -1,5 +1,8 @@
+module Bayes
 include("./helpermodules.jl") 
 using Pkg, CSV, DataFrames, MLDataUtils, Languages, .Sentiment140DataFrame, .TweetFormat
+
+export NaiveBayes, predict_positive, train, test, savenb, loadnb
 
 ### NAIVE BAYES PROBABILITY ALGORITHM ###
 # Struct for naive bayes model
@@ -13,6 +16,12 @@ end
 # Functions
 # returns true if the given tweet is predicted to be positive
 function predict_positive(tweet, model)
+    # Variables
+    pos_total = model.pos_total
+    neg_total = model.neg_total
+    pos_occurences = model.pos_occurences
+    neg_occurences = model.neg_occurences
+
     # Helper functions
     # number of times word appears with negative sentiment
     neg_count(word) = haskey(neg_occurences, word) ? neg_occurences[word] : 0
@@ -26,12 +35,6 @@ function predict_positive(tweet, model)
     prob_neg(tweet) = prod(prob_word_neg.(split(tweet))) * neg_total
     # probability sentiment is positive given a tweet
     prob_pos(tweet) = prod(prob_word_pos.(split(tweet))) * pos_total
-
-    # Variables
-    pos_total = model.pos_total
-    neg_total = model.neg_total
-    pos_occurences = model.pos_occurences
-    neg_occurences = model.neg_occurences
 
     # compare both probabilities and return true or false
     prob_pos(tweet) > prob_neg(tweet)
@@ -65,7 +68,7 @@ function train(set)
     end
 
     # create NaiveBayes model
-    NaiveBayes(pos_total, neg_total, pos_occurences, neg_occurences)
+    return NaiveBayes(pos_total, neg_total, pos_occurences, neg_occurences)
 end
 
 
@@ -81,13 +84,47 @@ function test(set, model)
     num_correct/size(set)[1]
 end
 
+### SAVING ###
+# Functions
+function savenb(model, filename)
+    open(filename, "w") do io
+        write(io, string(model.pos_total) * "\n")
+        write(io, string(model.neg_total) * "\n")
+        write(io, string(length(model.pos_occurences)) * "\n")
+        for pair in model.pos_occurences
+            write(io, string(pair.first) * " " * string(pair.second) * "\n")
+        end
+        write(io, string(length(model.neg_occurences)) * "\n")
+        for pair in model.neg_occurences
+            write(io, string(pair.first) * " " * string(pair.second) * "\n")
+        end
+    end
+end
 
-### MAIN PROGRAM ###
-# Variables
-path = "D:\\Downloads\\trainingandtestdata\\train.csv"
+### LOADING ###
+# Functions
+function loadnb(filename)
+    pos_total = 0
+    neg_total = 0
+    pos_occurences = Dict{AbstractString,Int}()
+    neg_occurences = Dict{AbstractString,Int}()
 
-# Script
-df = getdf(path)
-training_set, testing_set = splitobs(shuffleobs(df), 0.9) 
-model = train(training_set)
-println(test(testing_set, model)) # output the accuracy rate to the console 
+    open(filename, "r") do io
+        pos_total = parse(Int, readline(io))
+        neg_total = parse(Int, readline(io))
+        # number of pairs in pos_occurences dictionary
+        pos_pairs = parse(Int, readline(io))
+        for i = 1:pos_pairs
+            key, val = split(readline(io))
+            pos_occurences[key] = parse(Int, val)
+        end
+        neg_pairs = parse(Int, readline(io))
+        for i = 1:neg_pairs
+            key, val = split(readline(io))
+            neg_occurences[key] = parse(Int, val)
+        end
+    end
+
+    return NaiveBayes(pos_total, neg_total, pos_occurences, neg_occurences)
+end
+end
