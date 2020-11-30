@@ -34,4 +34,20 @@ Install Julia
 
 ## Required files
 
+### Included files
+SentimentAnalysis.ipynb - Main file in which data set is explored, cleaned and both word2vec and the SVM models are generated
+SentimentAnalysisGUI.ipynb - Graphical User Interface users can get sentiment of inputted phrase/tweet as well as a list iof similar tweets
+bayes.jl - Naive Bayes ML Algorithm Module
+helpermodules.jl - 
+naivebayes - Saved Naive Bayes model information
+nbtrain.jl - Created Naive Bayes model and saves it to file
+
+### Files that need to be downloaded
+train.csv - Sentiment140 data set can be downloaded from the following ```http://help.sentiment140.com/for-students```
+
+### Files that are generated
+tweets.txt - text corpus created from cleaned tweets to be passed into word2vec
+tweets-vec.txt - saved word2vec model
+naivebayes - Saved Naive Bayes model information
+
 ## Side notes
