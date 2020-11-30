@@ -1,9 +1,9 @@
 # SentimentAnalysisInJulia
 
 ## Installing Julia
-To install Julia first navigate to the following ```https://julialang.org/downloads/```
-Select the Julia version that corresponds with your given machine
-Install Julia
+1. To install Julia first navigate to the following ```https://julialang.org/downloads/```
+2. Select the Julia version that corresponds with your given machine
+3. Install Julia
 
 ## Installing development enviornment
 1. Jupter notebook is required to run the code
