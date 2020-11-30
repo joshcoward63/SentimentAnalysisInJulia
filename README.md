@@ -41,6 +41,7 @@ bayes.jl - Naive Bayes ML Algorithm Module
 helpermodules.jl - 
 naivebayes - Saved Naive Bayes model information
 nbtrain.jl - Created Naive Bayes model and saves it to file
+README - this file
 
 ### Files that need to be downloaded
 train.csv - Sentiment140 data set can be downloaded from the following ```http://help.sentiment140.com/for-students```
@@ -51,3 +52,4 @@ tweets-vec.txt - saved word2vec model
 naivebayes - Saved Naive Bayes model information
 
 ## Side notes
+Video covering this project can be found here ```https://www.youtube.com/watch?v=Y-IN-KpO-64```
