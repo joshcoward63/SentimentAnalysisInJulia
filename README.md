@@ -15,9 +15,22 @@ Install Julia
 
 ## Installing required Julia packages
 1. Type in ```Julia``` from start and click on Julia
-2. Press "]" to enter package manager
-3.
-
+2. Press ```]``` to enter package manager
+3. Enter the following to install the required packages
+  ```add IJulia```
+  ```add Gtk```
+  ```add DataFrames```
+  ```add CSV```
+  ```add LIBSVM```
+  ```add Word2Vec```
+  ```add Languages```
+  ```add MLDataUtils```
+  ```add WordTokenizers```
+  ```add JLD```
+  ```add BSON```
+  ```add Random```
+  ```add SVR```
+  ```add Statistics```
 
 ## Required files
 
