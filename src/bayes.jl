@@ -2,6 +2,7 @@ module Bayes
 include("./helpermodules.jl") 
 using Pkg, CSV, DataFrames, MLDataUtils, Languages, .Sentiment140DataFrame, .TweetFormat
 
+# Functions visible to external modules
 export NaiveBayes, predict_positive, train, test, savenb, loadnb
 
 ### NAIVE BAYES PROBABILITY ALGORITHM ###
