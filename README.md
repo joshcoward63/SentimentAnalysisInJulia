@@ -51,7 +51,7 @@
 - tweets-vec.txt - saved word2vec model
 - naivebayes - Saved Naive Bayes model information
 
-### File location requirements for the pure Julia Implementation
+### File location requirements
 The files tweets-vec.txt, naivebayes and train.csv need to be in a /data folder
 
 ## Side notes
