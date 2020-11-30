@@ -47,9 +47,9 @@ README - this file
 train.csv - Sentiment140 data set can be downloaded from the following ```http://help.sentiment140.com/for-students```
 
 ### Files that are generated
-*tweets.txt - text corpus created from cleaned tweets to be passed into word2vec
-*tweets-vec.txt - saved word2vec model
-*naivebayes - Saved Naive Bayes model information
+- tweets.txt - text corpus created from cleaned tweets to be passed into word2vec
+- tweets-vec.txt - saved word2vec model
+- naivebayes - Saved Naive Bayes model information
 
 ## Side notes
 Video covering this project can be found here ```https://www.youtube.com/watch?v=Y-IN-KpO-64```
