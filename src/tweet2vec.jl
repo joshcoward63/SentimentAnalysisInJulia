@@ -4,18 +4,18 @@ using Pkg, CSV, DataFrames, Word2Vec, .Sentiment140DataFrame, .TweetFormat
 
 ### WORD2VEC CREATION ###
 # Variables
-path = "D:\\Downloads\\trainingandtestdata\\train.csv"
+path = "../data/train.csv"
 
 # Functions
-createcorpus(tweets) = removestopwords(join(removenoise.(tweets)))
+createcorpus(tweets) = join(removenoise.(tweets))
 function writecorpusfile()
     tweets = getdf(path).tweet
     corpus = createcorpus(tweets)
-    open("tweets", "w") do io
+    open("../data/tweets", "w") do io
         write(io, corpus)
     end
 end
-createword2vec() = word2vec("tweets", "tweets-vec.txt", verbose = true)
+createword2vec() = word2vec("../data/tweets", "../data/tweets-vec.txt", verbose = true)
 
 
 ### MAIN PROGRAM ###
